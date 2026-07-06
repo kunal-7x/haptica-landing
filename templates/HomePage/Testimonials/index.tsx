@@ -7,6 +7,7 @@ import Image from "@/components/Image";
 import { testimonials } from "@/mocks/testimonials";
 import Arrows from "@/components/Arrows";
 import Heading from "@/components/Heading";
+import { DEMO_URL } from "@/constants/site";
 
 type TestimonialsProps = {};
 
@@ -69,8 +70,8 @@ const Testimonials = ({}: TestimonialsProps) => (
                                         <p className="quote mb-8">
                                             {item.text}
                                         </p>
-                                        <Button className="mt-auto">
-                                            Visit link
+                                        <Button className="mt-auto" href={DEMO_URL}>
+                                            Book a demo
                                         </Button>
                                     </div>
                                 </div>

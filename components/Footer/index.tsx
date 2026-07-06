@@ -30,7 +30,7 @@ const Footer = ({}: FooterProps) => (
         </div>
         <div className="lg:flex lg:items-center lg:justify-between">
             <div className="hidden caption text-n-4 lg:block">
-                © {new Date().getFullYear()} UI8
+                © {new Date().getFullYear()} Haptica AI by Famit
             </div>
             <div className="flex justify-center -mx-4">
                 {socials.map((item) => (

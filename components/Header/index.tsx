@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { disablePageScroll, enablePageScroll } from "scroll-lock";
 import Button from "../Button";
@@ -7,6 +7,7 @@ import Logo from "../Logo";
 import Image from "../Image";
 
 import { navigation } from "@/constants/navigation";
+import { LOGIN_URL, SIGNUP_URL } from "@/constants/site";
 
 type HeaderProps = {};
 
@@ -24,7 +25,6 @@ const Header = ({}: HeaderProps) => {
     };
 
     const pathname = usePathname();
-    const searchParams = useSearchParams();
 
     const handleClick = () => {
         enablePageScroll();
@@ -105,15 +105,15 @@ const Header = ({}: HeaderProps) => {
                         <div className="absolute top-[26.8rem] left-12 w-6 h-6 bg-gradient-to-b from-[#88E5BE] to-[#1A1A32] rounded-full"></div>
                     </div>
                 </nav>
-                <Link
-                    className={`button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block ${
-                        searchParams.has("new") ? "lg:text-n-1" : ""
-                    }`}
-                    href="/login?new=true"
+                <a
+                    className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block"
+                    href={SIGNUP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                 >
                     New account
-                </Link>
-                <Button className="hidden lg:flex" href="/login">
+                </a>
+                <Button className="hidden lg:flex" href={LOGIN_URL}>
                     Sign in
                 </Button>
                 <Button

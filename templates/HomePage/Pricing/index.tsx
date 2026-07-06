@@ -29,8 +29,8 @@ const Pricing = ({}: PricingProps) => {
                     </div>
                 </div>
                 <Heading
-                    tag="Get started with Brainwave"
-                    title="Pay once, use forever"
+                    tag="Pricing"
+                    title="Plans that grow with your sales team"
                 />
                 <div className="relative">
                     <PricingList />

@@ -1,4 +1,5 @@
 type SectionProps = {
+    id?: string;
     className?: string;
     crosses?: boolean;
     crossesOffset?: string;
@@ -7,6 +8,7 @@ type SectionProps = {
 };
 
 const Section = ({
+    id,
     className,
     crosses,
     crossesOffset,
@@ -14,6 +16,7 @@ const Section = ({
     children,
 }: SectionProps) => (
     <div
+        id={id}
         className={`relative ${
             customPaddings ||
             `py-10 lg:py-16 xl:py-20 ${crosses ? "lg:py-32 xl:py-40" : ""}`

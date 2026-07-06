@@ -1,6 +1,7 @@
 import Section from "@/components/Section";
 import Image from "@/components/Image";
 import Button from "@/components/Button";
+import { DEMO_URL } from "@/constants/site";
 
 type JoinProps = {};
 
@@ -10,9 +11,9 @@ const Join = ({}: JoinProps) => (
             <div className="relative max-w-[43.125rem] mx-auto py-8 md:py-14 xl:py-0">
                 <div className="relative z-1 text-center">
                     <h1 className="h1 mb-6">
-                        Be part of the future of{" "}
+                        Spark the Voice of{" "}
                         <span className="inline-block relative">
-                            Brainwave
+                            AI
                             <Image
                                 className="absolute top-full left-0 w-full"
                                 src="/images/curve.png"
@@ -23,11 +24,12 @@ const Join = ({}: JoinProps) => (
                         </span>
                     </h1>
                     <p className="body-1 mb-8 text-n-4">
-                        Unleash the power of AI within Brainwave. Upgrade your
-                        productivity with Brainwave, the open AI chat app.
+                        Put Riya on your phones and book more site visits this
+                        week. Haptica calls, qualifies and follows up, so your
+                        team closes.
                     </p>
-                    <Button href="/pricing" white>
-                        Get started
+                    <Button href={DEMO_URL} white>
+                        Book a demo
                     </Button>
                 </div>
                 <div className="absolute top-1/2 left-1/2 w-[46.5rem] h-[46.5rem] border border-n-2/5 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none">

@@ -1,0 +1,42 @@
+#cloud-config
+# Haptica AI landing (famit.in) — minimal static-site box.
+#
+# Deliberately lean: this droplet exists to run ONE container (nginx serving
+# a static export). No database, no app secrets, no other services belong
+# here — see ../SECURITY.md. Docker install steps mirror
+# infra/cloud-init.yaml (the main app's box) so both boxes are provisioned
+# the same way.
+package_update: true
+package_upgrade: true
+packages:
+  - ca-certificates
+  - curl
+  - git
+write_files:
+  - path: /etc/haptica/role
+    content: "haptica-landing\n"
+    permissions: "0644"
+runcmd:
+  # --- Docker CE + compose plugin (same recipe as infra/cloud-init.yaml) ----
+  - [ bash, -c, "install -m0755 -d /etc/apt/keyrings" ]
+  - [ bash, -c, "curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && chmod a+r /etc/apt/keyrings/docker.asc" ]
+  - [ bash, -c, "echo \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable\" > /etc/apt/sources.list.d/docker.list" ]
+  - [ bash, -c, "apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin" ]
+  - [ bash, -c, "systemctl enable --now docker" ]
+
+  # --- Get the landing site source onto the box -----------------------------
+  # PLACEHOLDER — point this at a repo that contains (at minimum) the
+  # contents of this `landing/` directory at its root, e.g. a standalone
+  # `haptica-landing` repo. Keeping it OUT of the main axcrio-platform
+  # monorepo checkout is deliberate: this public-facing box should never be
+  # able to check out backend code, .env.local, or anything else that repo
+  # holds — minimal attack surface means minimal CONTENT on the box too.
+  # (If you'd rather keep landing/ inside the monorepo, replace this block
+  # with a sparse/shallow clone of just that subdirectory — see DEPLOY.md.)
+  - [ bash, -c, "mkdir -p /opt/haptica-landing" ]
+  - [ bash, -c, "test -d /opt/haptica-landing/.git && git -C /opt/haptica-landing pull || git clone https://github.com/YOUR_GITHUB_ORG/haptica-landing.git /opt/haptica-landing" ]
+
+  # --- Non-secret runtime env, then build + start ---------------------------
+  - [ bash, -c, "cd /opt/haptica-landing && [ -f .env ] || cp .env.example .env" ]
+  - [ bash, -c, "cd /opt/haptica-landing && docker compose up -d --build" ]
+  - [ bash, -c, "touch /var/log/haptica-landing-cloudinit-done" ]

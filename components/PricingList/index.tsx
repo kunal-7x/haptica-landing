@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import Image from "@/components/Image";
 
 import { pricing } from "@/mocks/pricing";
+import { SIGNUP_URL, CONTACT_EMAIL } from "@/constants/site";
 
 type PricingListProps = {
     monthly?: boolean;
@@ -65,7 +66,7 @@ const PricingList = ({ monthly = true }: PricingListProps) => {
                             <div className="flex items-center h-[5.5rem] mb-6">
                                 {item.price && (
                                     <>
-                                        <div className="h3">$</div>
+                                        <div className="h3">₹</div>
                                         <div className="text-[5.5rem] leading-none font-bold">
                                             {monthly
                                                 ? item.price
@@ -84,8 +85,8 @@ const PricingList = ({ monthly = true }: PricingListProps) => {
                                 className="w-full mb-6"
                                 href={
                                     item.price
-                                        ? "/pricing"
-                                        : "mailto:info@ui8.net"
+                                        ? SIGNUP_URL
+                                        : `mailto:${CONTACT_EMAIL}`
                                 }
                                 white={!!item.price}
                             >

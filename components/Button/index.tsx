@@ -27,8 +27,13 @@ const Button = ({
     const spanClasses = `relative z-10`;
 
     return href ? (
-        href.startsWith("mailto:") ? (
-            <a href={href} className={classes}>
+        /^https?:\/\//.test(href) || href.startsWith("mailto:") ? (
+            <a
+                href={href}
+                className={classes}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+            >
                 <span className={spanClasses}>{children}</span>
                 {svgs(white)}
             </a>

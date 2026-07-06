@@ -1,0 +1,50 @@
+# Haptica AI landing (famit.in) — one hardened static-site container.
+#
+#   docker compose up -d --build
+#
+# The droplet's DO Cloud Firewall (deploy/provision-landing-droplet.py) locks
+# inbound 80/443 to Cloudflare's IP ranges only, so this container is never
+# reachable directly from the open internet — only through Cloudflare.
+# See DEPLOY.md for how 80/443 on the box reach this container's :8080.
+name: haptica-landing
+
+services:
+  haptica-landing:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Baked into the static export at build time (see .env.example).
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-https://haptica.famit.in}
+    image: haptica-landing:latest
+    container_name: haptica-landing
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+
+    # --- Hardening ----------------------------------------------------------
+    read_only: true                 # whole root filesystem is read-only...
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=32m   # ...except this, for the nginx pid +
+                                          # temp files (nginx.conf points them
+                                          # all at /tmp). noexec/nosuid because
+                                          # a static file server never needs to
+                                          # execute anything from there.
+    security_opt:
+      - no-new-privileges:true      # container can never escalate privileges
+    cap_drop:
+      - ALL                        # nginx on an unprivileged port needs zero
+                                    # Linux capabilities
+
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/health"]
+      interval: 30s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
