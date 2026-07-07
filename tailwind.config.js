@@ -59,6 +59,32 @@ module.exports = {
             },
             transitionTimingFunction: {
                 DEFAULT: "linear",
+                expo: "cubic-bezier(0.16, 1, 0.3, 1)",
+            },
+            keyframes: {
+                blob: {
+                    "0%,100%": { transform: "translate(0,0) scale(1)" },
+                    "33%": { transform: "translate(3%,-4%) scale(1.06)" },
+                    "66%": { transform: "translate(-3%,3%) scale(0.96)" },
+                },
+                floaty: {
+                    "0%,100%": { transform: "translateY(0)" },
+                    "50%": { transform: "translateY(-10px)" },
+                },
+                shimmer: {
+                    "0%": { backgroundPosition: "-200% 0" },
+                    "100%": { backgroundPosition: "200% 0" },
+                },
+                marquee: {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(-50%)" },
+                },
+            },
+            animation: {
+                blob: "blob 18s ease-in-out infinite",
+                floaty: "floaty 6s ease-in-out infinite",
+                shimmer: "shimmer 2.5s linear infinite",
+                marquee: "marquee 32s linear infinite",
             },
             zIndex: {
                 1: "1",
@@ -89,11 +115,11 @@ module.exports = {
                         {},
                 },
                 ".h1": {
-                    "@apply font-display font-semibold text-[2.5rem] leading-[3.25rem] md:text-[2.75rem] md:leading-[3.75rem] lg:text-[3.25rem] lg:leading-[4.0625rem] xl:text-[3.75rem] xl:leading-[4.5rem]":
+                    "@apply font-display font-bold tracking-[-0.03em] text-[clamp(2.6rem,6.2vw,5rem)] leading-[1.03]":
                         {},
                 },
                 ".h2": {
-                    "@apply font-display text-[1.75rem] leading-[2.5rem] md:text-[2rem] md:leading-[2.5rem] lg:text-[2.5rem] lg:leading-[3.5rem] xl:text-[3rem] xl:leading-tight":
+                    "@apply font-display font-semibold tracking-[-0.02em] text-[clamp(2rem,4vw,3.25rem)] leading-[1.08]":
                         {},
                 },
                 ".h3": {
