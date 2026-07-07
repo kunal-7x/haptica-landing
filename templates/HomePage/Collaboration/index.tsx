@@ -1,4 +1,6 @@
 import Section from "@/components/Section";
+import Reveal from "@/components/Reveal";
+import SpotlightCard from "@/components/SpotlightCard";
 
 const INTEGRATIONS = [
     "WhatsApp",
@@ -26,7 +28,7 @@ const Check = () => (
         strokeWidth="2.4"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="mt-0.5 h-4 w-4 shrink-0 text-color-4"
+        className="h-3.5 w-3.5 text-color-4"
     >
         <path d="M4 10.5l4 4 8-9" />
     </svg>
@@ -37,7 +39,7 @@ const Collaboration = () => {
         <Section id="integrations" className="scroll-mt-24" crosses>
             <div className="container">
                 <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-                    <div>
+                    <Reveal>
                         <span className="tagline text-n-3">
                             Works with your stack
                         </span>
@@ -53,32 +55,43 @@ const Collaboration = () => {
                         <ul className="space-y-4">
                             {POINTS.map((p) => (
                                 <li key={p} className="flex items-start gap-3">
-                                    <Check />
+                                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-color-4/10 ring-1 ring-inset ring-color-4/25">
+                                        <Check />
+                                    </span>
                                     <span className="body-2 text-n-2">{p}</span>
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </Reveal>
 
-                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <Reveal
+                        stagger
+                        className="grid grid-cols-2 gap-3 sm:gap-4"
+                    >
                         {INTEGRATIONS.map((name, i) => (
-                            <div
+                            <SpotlightCard
                                 key={name}
-                                className="flex items-center gap-3 rounded-xl border border-n-6 bg-n-7/50 px-4 py-3.5 transition-colors duration-300 hover:border-n-5"
+                                tilt={false}
+                                className="flex items-center gap-3 px-4 py-3.5"
+                                spotlight={
+                                    i % 2
+                                        ? "rgba(123,108,255,0.16)"
+                                        : "rgba(255,106,61,0.16)"
+                                }
                             >
                                 <span
-                                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg font-code text-sm font-bold ${
+                                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg font-code text-sm font-bold ring-1 ring-inset ${
                                         i % 2
-                                            ? "bg-color-3/12 text-color-3"
-                                            : "bg-color-1/12 text-color-1"
+                                            ? "bg-gradient-to-br from-color-3/25 to-color-3/5 text-color-3 ring-color-3/25"
+                                            : "bg-gradient-to-br from-color-1/25 to-color-1/5 text-color-1 ring-color-1/25"
                                     }`}
                                 >
                                     {name[0]}
                                 </span>
                                 <span className="text-sm text-n-2">{name}</span>
-                            </div>
+                            </SpotlightCard>
                         ))}
-                    </div>
+                    </Reveal>
                 </div>
             </div>
         </Section>
