@@ -1,32 +1,25 @@
+// Official social profiles. Brand glyphs are rendered inline in the Footer
+// (keyed by `id`), so no icon files are needed here.
 export const socials = [
     {
-        id: "0",
-        title: "Discord",
-        iconUrl: "/images/socials/discord.svg",
-        url: "#",
+        id: "x",
+        title: "X (Twitter)",
+        url: "https://x.com/haptica6",
     },
     {
-        id: "1",
-        title: "Twitter",
-        iconUrl: "/images/socials/twitter.svg",
-        url: "#",
+        id: "linkedin",
+        title: "LinkedIn",
+        url: "https://www.linkedin.com/in/haptica-co/",
     },
     {
-        id: "2",
+        id: "youtube",
+        title: "YouTube",
+        url: "https://www.youtube.com/@Haptica-co",
+    },
+    {
+        // Instagram URL pending from founder — update when provided.
+        id: "instagram",
         title: "Instagram",
-        iconUrl: "/images/socials/instagram.svg",
-        url: "#",
-    },
-    {
-        id: "3",
-        title: "Telegram",
-        iconUrl: "/images/socials/telegram.svg",
-        url: "#",
-    },
-    {
-        id: "4",
-        title: "Facebook",
-        iconUrl: "/images/socials/facebook.svg",
         url: "#",
     },
 ];

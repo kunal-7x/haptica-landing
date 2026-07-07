@@ -233,7 +233,7 @@ export default function DemoModalUI({
                         exit={{ opacity: 0 }}
                     />
                     <motion.div
-                        className="relative z-1 w-full max-w-lg overflow-hidden rounded-t-3xl border border-n-1/10 bg-n-8 p-6 shadow-2xl sm:rounded-3xl sm:p-8"
+                        className="relative z-1 w-full max-w-lg overflow-hidden rounded-t-3xl border border-n-1/10 bg-n-8/80 p-6 shadow-2xl ring-1 ring-white/5 backdrop-blur-2xl sm:rounded-3xl sm:p-8"
                         initial={{ y: 40, opacity: 0, scale: 0.98 }}
                         animate={{ y: 0, opacity: 1, scale: 1 }}
                         exit={{ y: 20, opacity: 0, scale: 0.98 }}

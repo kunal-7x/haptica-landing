@@ -89,16 +89,22 @@ module.exports = {
                         {},
                 },
                 ".h1": {
-                    "@apply font-display font-semibold text-[2.5rem] leading-[3.25rem] md:text-[2.75rem] md:leading-[3.75rem] lg:text-[3.25rem] lg:leading-[4.0625rem] xl:text-[3.75rem] xl:leading-[4.5rem]":
-                        {},
+                    "@apply font-display font-bold": {},
+                    fontSize: "clamp(2.75rem, 5.2vw, 5rem)",
+                    lineHeight: "1.04",
+                    letterSpacing: "-0.03em",
                 },
                 ".h2": {
-                    "@apply font-display text-[1.75rem] leading-[2.5rem] md:text-[2rem] md:leading-[2.5rem] lg:text-[2.5rem] lg:leading-[3.5rem] xl:text-[3rem] xl:leading-tight":
-                        {},
+                    "@apply font-display font-bold": {},
+                    fontSize: "clamp(2rem, 3.6vw, 3.25rem)",
+                    lineHeight: "1.1",
+                    letterSpacing: "-0.02em",
                 },
                 ".h3": {
-                    "@apply font-display text-[2rem] leading-normal md:text-[2.5rem]":
-                        {},
+                    "@apply font-display font-semibold": {},
+                    fontSize: "clamp(1.6rem, 2.6vw, 2.25rem)",
+                    lineHeight: "1.15",
+                    letterSpacing: "-0.01em",
                 },
                 ".h4": {
                     "@apply font-display text-[2rem] leading-normal": {},
@@ -110,8 +116,8 @@ module.exports = {
                     "@apply font-display font-semibold text-lg leading-8": {},
                 },
                 ".body-1": {
-                    "@apply text-[0.875rem] leading-[1.5rem] md:text-[1rem] md:leading-[1.75rem] lg:text-[1.25rem] lg:leading-8":
-                        {},
+                    fontSize: "clamp(1rem, 1.15vw, 1.25rem)",
+                    lineHeight: "1.7",
                 },
                 ".body-2": {
                     "@apply font-light text-[0.875rem] leading-6 md:text-base":

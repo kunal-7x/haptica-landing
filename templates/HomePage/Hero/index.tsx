@@ -1,5 +1,5 @@
 import Section from "@/components/Section";
-import LiveCallConsole from "@/components/LiveCallConsole";
+import HeroVideo from "@/components/HeroVideo";
 import DemoButton from "@/components/DemoButton";
 
 const Hero = () => {
@@ -22,7 +22,10 @@ const Hero = () => {
 
                 <div className="relative z-2 grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-8 xl:gap-16">
                     {/* left — copy */}
-                    <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
+                    <div
+                        className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left"
+                        data-reveal
+                    >
                         <span className="tagline mb-5 inline-flex items-center gap-2 text-n-3">
                             <span className="h-2 w-2 animate-pulse rounded-full bg-color-1" />
                             Spark the Voice of AI
@@ -34,15 +37,17 @@ const Hero = () => {
                             </span>
                         </h1>
                         <p className="body-1 mb-8 text-n-3 lg:max-w-xl">
-                            Haptica AI dials every new lead in minutes, qualifies
-                            them in natural Hindi, Hinglish or English, follows up
-                            on WhatsApp, and logs it all to your CRM —{" "}
+                            Riya dials every new lead in minutes, qualifies them in
+                            Hindi, Hinglish or English, and follows up on WhatsApp
+                            —{" "}
                             <span className="text-n-1">
-                                one console for your entire sales floor.
+                                so your team walks into more booked meetings.
                             </span>
                         </p>
                         <div className="flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
-                            <DemoButton white>Book a demo</DemoButton>
+                            <DemoButton white size="lg">
+                                Book a demo
+                            </DemoButton>
                             <a
                                 href="#how-it-works"
                                 className="button inline-flex items-center gap-2 text-n-2 transition-colors hover:text-color-1"
@@ -69,9 +74,9 @@ const Hero = () => {
                         </p>
                     </div>
 
-                    {/* right — the live call, in progress */}
-                    <div className="relative">
-                        <LiveCallConsole />
+                    {/* right — product demo video */}
+                    <div className="relative" data-reveal>
+                        <HeroVideo />
                     </div>
                 </div>
             </div>

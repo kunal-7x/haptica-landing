@@ -10,12 +10,25 @@ type Props = {
     white?: boolean;
     className?: string;
     px?: string;
+    size?: "md" | "lg";
 };
 
-export default function DemoButton({ children, white, className, px }: Props) {
+export default function DemoButton({
+    children,
+    white,
+    className,
+    px,
+    size,
+}: Props) {
     const { open } = useDemo();
     return (
-        <Button onClick={open} white={white} className={className} px={px}>
+        <Button
+            onClick={open}
+            white={white}
+            className={className}
+            px={px}
+            size={size}
+        >
             {children}
         </Button>
     );

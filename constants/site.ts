@@ -15,6 +15,12 @@ export const LEAD_EMAIL = "haptica.cc@gmail.com";
 // the email above). Until set, the full form falls back to WhatsApp delivery.
 export const WEB3FORMS_KEY = "";
 
+// ── Demo video ───────────────────────────────────────────────
+// Hosted on DO Spaces + Cloudflare CDN (URL set during the deploy step).
+// While empty, the hero shows the poster image only (still looks premium).
+export const DEMO_VIDEO_URL = "/videos/demo.mp4";
+export const DEMO_VIDEO_POSTER = "/images/demo-poster.jpg";
+
 export function whatsappLink(message: string): string {
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }

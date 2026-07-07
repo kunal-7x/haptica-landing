@@ -8,6 +8,7 @@ type ButtonProps = {
     children: React.ReactNode;
     px?: string;
     white?: boolean;
+    size?: "md" | "lg";
 };
 
 const Button = ({
@@ -17,9 +18,11 @@ const Button = ({
     children,
     px,
     white,
+    size = "md",
 }: ButtonProps) => {
-    const classes = `button relative inline-flex items-center justify-center h-11 ${
-        px || "px-7"
+    const sizing = size === "lg" ? "h-14 text-sm" : "h-11";
+    const classes = `button relative inline-flex items-center justify-center ${sizing} ${
+        px || (size === "lg" ? "px-9" : "px-7")
     } ${white ? "text-n-8" : "text-n-1"} transition-colors hover:text-color-1 ${
         className || ""
     }`;

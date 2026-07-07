@@ -1,6 +1,7 @@
 import Header from "../Header";
 import Footer from "../Footer";
 import { DemoProvider } from "../DemoModal";
+import MotionInit from "../MotionInit";
 
 type LayoutProps = {
     hideFooter?: boolean;
@@ -14,6 +15,7 @@ const Layout = ({ hideFooter, children }: LayoutProps) => (
             {children}
             {hideFooter ? null : <Footer />}
         </div>
+        <MotionInit />
     </DemoProvider>
 );
 
