@@ -1,4 +1,5 @@
 import Section from "@/components/Section";
+import SpotlightCard from "@/components/SpotlightCard";
 
 const Ico = ({ children }: { children: React.ReactNode }) => (
     <svg
@@ -14,11 +15,27 @@ const Ico = ({ children }: { children: React.ReactNode }) => (
     </svg>
 );
 
-const FEATURES = [
+// literal class strings (never interpolated) so Tailwind keeps them
+const ACCENT = {
+    coral: { tile: "bg-color-1/12 text-color-1", spot: "rgba(255,106,61,0.18)" },
+    amber: { tile: "bg-color-2/12 text-color-2", spot: "rgba(255,180,67,0.18)" },
+    indigo: { tile: "bg-color-3/12 text-color-3", spot: "rgba(123,108,255,0.18)" },
+    mint: { tile: "bg-color-4/12 text-color-4", spot: "rgba(55,224,168,0.18)" },
+    violet: { tile: "bg-color-5/12 text-color-5", spot: "rgba(154,140,255,0.18)" },
+} as const;
+
+type Accent = keyof typeof ACCENT;
+
+const FEATURES: {
+    title: string;
+    text: string;
+    accent: Accent;
+    icon: React.ReactNode;
+}[] = [
     {
         title: "AI Voice Telecaller",
         text: "Riya calls and qualifies every lead over a real phone line — in Hindi, Hinglish or English.",
-        tile: "bg-color-1/10 text-color-1",
+        accent: "coral",
         icon: (
             <Ico>
                 <path d="M5 4h3l1.8 4.5-2.3 1.4a11 11 0 0 0 5.6 5.6l1.4-2.3L19 16v3a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z" />
@@ -28,7 +45,7 @@ const FEATURES = [
     {
         title: "AI Manager",
         text: "Answers your inbound calls, records them, and hands you a live transcript and next step.",
-        tile: "bg-color-3/10 text-color-3",
+        accent: "indigo",
         icon: (
             <Ico>
                 <path d="M4 12a8 8 0 0 1 16 0" />
@@ -40,7 +57,7 @@ const FEATURES = [
     {
         title: "WhatsApp automation",
         text: "Sends brochures, reminders and templates the moment a call ends — and chases the follow-ups.",
-        tile: "bg-color-4/10 text-color-4",
+        accent: "mint",
         icon: (
             <Ico>
                 <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.2A8 8 0 1 1 20 11.5z" />
@@ -50,7 +67,7 @@ const FEATURES = [
     {
         title: "Sales CRM & pipeline",
         text: "Every lead scored and staged New → Qualified → Booked → Won, with recordings attached.",
-        tile: "bg-color-1/10 text-color-1",
+        accent: "coral",
         icon: (
             <Ico>
                 <rect x="3" y="4" width="7" height="16" rx="1.5" />
@@ -61,7 +78,7 @@ const FEATURES = [
     {
         title: "Creative Studio",
         text: "Generate on-brand images and short video ad clips for your campaigns, in batches.",
-        tile: "bg-color-2/10 text-color-2",
+        accent: "amber",
         icon: (
             <Ico>
                 <rect x="3" y="4" width="18" height="16" rx="2" />
@@ -73,7 +90,7 @@ const FEATURES = [
     {
         title: "Analytics & reports",
         text: "Track call volume, connect rates, funnel and spend — per campaign and per caller, live.",
-        tile: "bg-color-3/10 text-color-3",
+        accent: "indigo",
         icon: (
             <Ico>
                 <path d="M3 21h18" />
@@ -87,7 +104,7 @@ const FEATURES = [
     {
         title: "Knowledge base",
         text: "Feed Riya your projects, pricing and FAQs so every answer is accurate and on-message.",
-        tile: "bg-color-5/10 text-color-5",
+        accent: "violet",
         icon: (
             <Ico>
                 <path d="M6 4h11a1 1 0 0 1 1 1v13H7a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2z" />
@@ -98,7 +115,7 @@ const FEATURES = [
     {
         title: "Integrations & Vault",
         text: "Connect forms, calendars and webhooks, and bring your own API keys — you stay in control.",
-        tile: "bg-color-4/10 text-color-4",
+        accent: "mint",
         icon: (
             <Ico>
                 <rect x="3" y="3" width="7" height="7" rx="1.5" />
@@ -130,22 +147,26 @@ const Features = () => {
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    {FEATURES.map((f) => (
-                        <div
-                            key={f.title}
-                            className="group rounded-2xl border border-n-6 bg-n-7/50 p-6 transition-colors duration-300 hover:border-n-5"
-                        >
-                            <span
-                                className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl ${f.tile}`}
+                    {FEATURES.map((f) => {
+                        const a = ACCENT[f.accent];
+                        return (
+                            <SpotlightCard
+                                key={f.title}
+                                className="h-full p-6"
+                                spotlight={a.spot}
                             >
-                                {f.icon}
-                            </span>
-                            <h3 className="mb-2 text-lg font-semibold text-n-1">
-                                {f.title}
-                            </h3>
-                            <p className="body-2 text-n-3">{f.text}</p>
-                        </div>
-                    ))}
+                                <span
+                                    className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl ${a.tile}`}
+                                >
+                                    {f.icon}
+                                </span>
+                                <h3 className="mb-2 text-lg font-semibold text-n-1">
+                                    {f.title}
+                                </h3>
+                                <p className="body-2 text-n-3">{f.text}</p>
+                            </SpotlightCard>
+                        );
+                    })}
                 </div>
             </div>
         </Section>

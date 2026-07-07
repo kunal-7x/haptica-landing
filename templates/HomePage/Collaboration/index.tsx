@@ -1,4 +1,5 @@
 import Section from "@/components/Section";
+import SpotlightCard from "@/components/SpotlightCard";
 
 const INTEGRATIONS = [
     "WhatsApp",
@@ -62,9 +63,14 @@ const Collaboration = () => {
 
                     <div className="grid grid-cols-2 gap-3 sm:gap-4">
                         {INTEGRATIONS.map((name, i) => (
-                            <div
+                            <SpotlightCard
                                 key={name}
-                                className="flex items-center gap-3 rounded-xl border border-n-6 bg-n-7/50 px-4 py-3.5 transition-colors duration-300 hover:border-n-5"
+                                className="flex items-center gap-3 px-4 py-3.5"
+                                spotlight={
+                                    i % 2
+                                        ? "rgba(123,108,255,0.18)"
+                                        : "rgba(255,106,61,0.18)"
+                                }
                             >
                                 <span
                                     className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg font-code text-sm font-bold ${
@@ -76,7 +82,7 @@ const Collaboration = () => {
                                     {name[0]}
                                 </span>
                                 <span className="text-sm text-n-2">{name}</span>
-                            </div>
+                            </SpotlightCard>
                         ))}
                     </div>
                 </div>
