@@ -1,5 +1,4 @@
 // Single source of truth for outbound links to the Haptica AI app + lead capture.
-// The landing page is standalone; these are the only ties to the product.
 export const APP_URL = "https://haptica.famit.in";
 export const SIGNUP_URL = `${APP_URL}/signup`;
 export const LOGIN_URL = `${APP_URL}/login`;

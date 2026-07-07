@@ -1,146 +1,91 @@
-"use client";
-
 import { Splide, SplideTrack, SplideSlide } from "@splidejs/react-splide";
 import Section from "@/components/Section";
+import Tagline from "@/components/Tagline";
 import Button from "@/components/Button";
 import Image from "@/components/Image";
-import Reveal from "@/components/Reveal";
-import SpotlightCard from "@/components/SpotlightCard";
 
 import { testimonials } from "@/mocks/testimonials";
 import Arrows from "@/components/Arrows";
 import Heading from "@/components/Heading";
-import { useDemo } from "@/components/DemoModal";
+import { DEMO_URL } from "@/constants/site";
 
 type TestimonialsProps = {};
 
-const Stars = () => (
-    <div className="flex gap-0.5 text-color-2" aria-hidden>
-        {Array.from({ length: 5 }).map((_, i) => (
-            <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z" />
-            </svg>
-        ))}
-    </div>
+const Testimonials = ({}: TestimonialsProps) => (
+    <Section className="overflow-hidden">
+        <div className="container relative z-2">
+            <Heading
+                tag="Ready to get started"
+                title="What the community is saying"
+            />
+            <Splide
+                className="splide-custom splide-visible"
+                options={{
+                    mediaQuery: "min",
+                    gap: "1.5rem",
+                    breakpoints: {
+                        1024: {
+                            autoWidth: true,
+                        },
+                    },
+                    rewind: true,
+                    pagination: false,
+                }}
+                hasTrack={false}
+            >
+                <SplideTrack>
+                    {testimonials.map((item) => (
+                        <SplideSlide key={item.id}>
+                            <div className="relative flex h-full p-4 rounded-t-xl overflow-hidden lg:w-[46.125rem]">
+                                <div className="absolute top-0 left-0 right-0 bottom-[3.25rem] border border-n-4/50 rounded-3xl"></div>
+                                <div className="absolute inset-px rounded-t-[1.4375rem] overflow-hidden">
+                                    <div className="absolute -inset-0.25">
+                                        <Image
+                                            className="w-full h-full object-cover"
+                                            src={item.imageUrl}
+                                            width={739}
+                                            height={472}
+                                            alt={item.name}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="absolute inset-0 bg-gradient-to-r from-n-8/50 to-n-8/0"></div>
+                                <div className="hidden relative z-1 md:flex flex-col flex-1 pt-12 px-4 pb-16">
+                                    <div className="w-[12.75rem] h-10 mb-auto">
+                                        <Image
+                                            className="w-full h-full object-contain"
+                                            src={item.logoUrl}
+                                            width={204}
+                                            height={40}
+                                            alt={item.name}
+                                        />
+                                    </div>
+                                    <div className="h5">{item.name}</div>
+                                    <div className="h5 text-n-4">
+                                        {item.role}
+                                    </div>
+                                </div>
+                                <div className="relative flex z-1 bg-conic-gradient p-0.25 rounded-2xl md:ml-auto">
+                                    <div className="flex flex-col items-start p-8 bg-n-8 rounded-[0.9375rem] md:w-[21.75rem]">
+                                        <p className="quote mb-8">
+                                            {item.text}
+                                        </p>
+                                        <Button className="mt-auto" href={DEMO_URL}>
+                                            Book a demo
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </SplideSlide>
+                    ))}
+                </SplideTrack>
+                <Arrows
+                    className="justify-center mt-12 md:mt-15 xl:mt-20"
+                    prevClassName="mr-8"
+                />
+            </Splide>
+        </div>
+    </Section>
 );
-
-const Testimonials = ({}: TestimonialsProps) => {
-    const { open } = useDemo();
-
-    return (
-        <Section className="overflow-hidden">
-            <div className="container relative z-2">
-                <Reveal>
-                    <Heading
-                        tag="Ready to get started"
-                        title="What the community is saying"
-                    />
-                </Reveal>
-                <Reveal>
-                    <Splide
-                        className="splide-custom splide-visible"
-                        options={{
-                            mediaQuery: "min",
-                            gap: "1.5rem",
-                            breakpoints: {
-                                1024: {
-                                    autoWidth: true,
-                                },
-                            },
-                            rewind: true,
-                            pagination: false,
-                        }}
-                        hasTrack={false}
-                    >
-                        <SplideTrack>
-                            {testimonials.map((item) => (
-                                <SplideSlide key={item.id}>
-                                    <SpotlightCard
-                                        className="h-full lg:w-[46.125rem]"
-                                        spotlight="rgba(255,106,61,0.14)"
-                                    >
-                                        <div className="flex h-full flex-col md:flex-row">
-                                            {/* portrait + identity */}
-                                            <div className="relative hidden shrink-0 overflow-hidden md:block md:w-[15.5rem]">
-                                                <Image
-                                                    className="absolute inset-0 h-full w-full object-cover"
-                                                    src={item.imageUrl}
-                                                    width={739}
-                                                    height={472}
-                                                    alt={item.name}
-                                                />
-                                                <div className="absolute inset-0 bg-gradient-to-r from-n-8/10 via-n-8/50 to-n-8" />
-                                                <div className="absolute inset-x-0 bottom-0 p-6">
-                                                    <Image
-                                                        className="mb-3 h-7 w-auto object-contain opacity-90"
-                                                        src={item.logoUrl}
-                                                        width={204}
-                                                        height={40}
-                                                        alt=""
-                                                    />
-                                                    <div className="text-lg font-semibold text-n-1">
-                                                        {item.name}
-                                                    </div>
-                                                    <div className="text-sm text-n-3">
-                                                        {item.role}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* quote */}
-                                            <div className="flex flex-1 flex-col p-8">
-                                                <div className="mb-6 flex items-center gap-3">
-                                                    <Stars />
-                                                    <span className="font-code text-[0.625rem] uppercase tracking-wider text-n-4">
-                                                        Verified customer
-                                                    </span>
-                                                </div>
-                                                <p className="quote mb-8 text-n-1">
-                                                    “{item.text}”
-                                                </p>
-                                                <div className="mt-auto flex items-center gap-4 border-t border-n-1/10 pt-6">
-                                                    {/* mobile identity */}
-                                                    <div className="flex items-center gap-3 md:hidden">
-                                                        <span className="block h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-inset ring-n-1/15">
-                                                            <Image
-                                                                className="h-full w-full object-cover"
-                                                                src={item.imageUrl}
-                                                                width={80}
-                                                                height={80}
-                                                                alt={item.name}
-                                                            />
-                                                        </span>
-                                                        <div className="min-w-0">
-                                                            <div className="truncate text-sm font-semibold text-n-1">
-                                                                {item.name}
-                                                            </div>
-                                                            <div className="truncate text-xs text-n-3">
-                                                                {item.role}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <Button
-                                                        className="ml-auto"
-                                                        onClick={open}
-                                                    >
-                                                        Book a demo
-                                                    </Button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </SpotlightCard>
-                                </SplideSlide>
-                            ))}
-                        </SplideTrack>
-                        <Arrows
-                            className="justify-center mt-12 md:mt-15 xl:mt-20"
-                            prevClassName="mr-8"
-                        />
-                    </Splide>
-                </Reveal>
-            </div>
-        </Section>
-    );
-};
 
 export default Testimonials;

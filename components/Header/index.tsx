@@ -7,9 +7,7 @@ import Logo from "../Logo";
 import Image from "../Image";
 
 import { navigation } from "@/constants/navigation";
-import { LOGIN_URL } from "@/constants/site";
-import MagneticButton from "../MagneticButton";
-import { useDemo } from "../DemoModal";
+import { LOGIN_URL, SIGNUP_URL } from "@/constants/site";
 
 type HeaderProps = {};
 
@@ -27,7 +25,6 @@ const Header = ({}: HeaderProps) => {
     };
 
     const pathname = usePathname();
-    const { open: openDemo } = useDemo();
 
     const handleClick = () => {
         enablePageScroll();
@@ -109,21 +106,16 @@ const Header = ({}: HeaderProps) => {
                     </div>
                 </nav>
                 <a
-                    className="button ml-auto mr-6 hidden text-n-1/60 transition-colors hover:text-n-1 lg:block"
-                    href={LOGIN_URL}
+                    className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block"
+                    href={SIGNUP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Sign in
+                    New account
                 </a>
-                <MagneticButton className="hidden lg:block">
-                    <button
-                        onClick={openDemo}
-                        className="button relative flex h-10 items-center overflow-hidden rounded-full bg-gradient-to-r from-color-1 to-color-2 px-6 text-n-8"
-                    >
-                        Book a demo
-                    </button>
-                </MagneticButton>
+                <Button className="hidden lg:flex" href={LOGIN_URL}>
+                    Sign in
+                </Button>
                 <Button
                     className="ml-auto lg:hidden"
                     onClick={toggleNavigation}

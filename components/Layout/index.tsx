@@ -1,7 +1,5 @@
 import Header from "../Header";
 import Footer from "../Footer";
-import SmoothScroll from "../SmoothScroll";
-import CustomCursor from "../CustomCursor";
 import { DemoProvider } from "../DemoModal";
 
 type LayoutProps = {
@@ -12,8 +10,6 @@ type LayoutProps = {
 const Layout = ({ hideFooter, children }: LayoutProps) => (
     <DemoProvider>
         <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
-            <SmoothScroll />
-            <CustomCursor />
             <Header />
             {children}
             {hideFooter ? null : <Footer />}

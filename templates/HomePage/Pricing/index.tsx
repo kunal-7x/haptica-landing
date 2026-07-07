@@ -3,7 +3,6 @@ import Section from "@/components/Section";
 import Image from "@/components/Image";
 import Heading from "@/components/Heading";
 import PricingList from "@/components/PricingList";
-import Reveal from "@/components/Reveal";
 
 type PricingProps = {};
 
@@ -29,16 +28,12 @@ const Pricing = ({}: PricingProps) => {
                         />
                     </div>
                 </div>
-                <Reveal>
-                    <Heading
-                        tag="Pricing"
-                        title="Plans that grow with your sales team"
-                    />
-                </Reveal>
+                <Heading
+                    tag="Pricing"
+                    title="Plans that grow with your sales team"
+                />
                 <div className="relative">
-                    <Reveal>
-                        <PricingList />
-                    </Reveal>
+                    <PricingList />
                     <div className="hidden lg:block absolute top-1/2 right-full w-[92.5rem] h-[11.0625rem] -translate-y-1/2 pointer-events-none">
                         <Image
                             className="w-full"
