@@ -16,10 +16,12 @@ export const LEAD_EMAIL = "haptica.cc@gmail.com";
 export const WEB3FORMS_KEY = "";
 
 // ── Demo video ───────────────────────────────────────────────
-// Hosted on DO Spaces + Cloudflare CDN (URL set during the deploy step).
-// While empty, the hero shows the poster image only (still looks premium).
-export const DEMO_VIDEO_URL = "/videos/demo.mp4";
-export const DEMO_VIDEO_POSTER = "/images/demo-poster.jpg";
+// Bundled with the site (public/videos, public/images) and served by the CDN.
+// Prefixed with the deploy basePath so it resolves on both a GitHub Pages
+// project subpath and a root/custom domain (famit.in).
+const BP = process.env.NEXT_PUBLIC_BASE_PATH || "";
+export const DEMO_VIDEO_URL = `${BP}/videos/demo.mp4`;
+export const DEMO_VIDEO_POSTER = `${BP}/images/demo-poster.jpg`;
 
 export function whatsappLink(message: string): string {
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

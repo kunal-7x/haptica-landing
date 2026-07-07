@@ -10,6 +10,9 @@ const nextConfig = {
     // TypeScript still gates the build; skip the stylistic ESLint gate
     // (the demo modal copy carries apostrophes).
     eslint: { ignoreDuringBuilds: true },
+    // expose basePath to the client so raw <video>/<img> asset URLs resolve on
+    // both a project subpath (/haptica-landing) and a root/custom domain.
+    env: { NEXT_PUBLIC_BASE_PATH: basePath },
     ...(basePath ? { basePath } : {}),
 };
 
